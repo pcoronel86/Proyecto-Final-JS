@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <title>Proyecto Final</title>
+</head>
+
+<body>
+  <header class="header">
+    <nav class="navbar navbar-dark bg-primary fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="/images/logo.png">
+        </a>
+      </div>
+    </nav>
+  </header>
+  <section class="buscador">
+  </section>
+  <section class="section">
+    <div class="grid" id="grid">
+      
+    </div>
+
+  </section class="carritoCompras">
+  <hr>
+  <section class="shopping-cart">
+    <div class="container">
+      <h2 class="text-center text-light">CARRITO</h2>
+      <hr>
+      <div class="row">
+        <div class="col-6">
+          <div class="shopping-cart-header">
+            <h6 class="text-light">Producto</h6>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="shopping-cart-header">
+            <h6 class="text-light ">Precio</h6>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="shopping-cart-header">
+            <h6 class="text-light">Cantidad</h6>
+          </div>
+        </div>
+      </div>
+      <!-- ? START SHOPPING CART ITEMS -->
+      
+      <div class="shopping-cart-items" id="carrito">
+
+      </div>
+      <!-- ? END SHOPPING CART ITEMS -->
+    </div>
+    <div class="compraTotal">
+      <div class="precioTotal">
+        <input class="precioTotal" type="text" id="total" value="0">
+      </div> 
+      <div>
+        <a class="btn btn-success ml-auto compraFinal" type="button" data-toggle="modal" data-target="#comprarModal" id="compraFinal" href="finalizarCompra.html">Comprar</a> 
+      </div>
+    </div>
+  </section>
+  <footer>
+
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script src="_main.js"></script>
+</body>
+
+</html>

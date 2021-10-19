@@ -1,0 +1,68 @@
+[
+    {
+        "nombre":"Amd Ryzen 7 3800XT 4.7 Ghz",
+        "precio":47500,
+        "img":"images/Procesador Amd Ryzen 7 3800XT 4.7 Ghz.jpeg",
+        "id":1
+    },
+    {
+        "nombre":"Amd Ryzen 7 5800X 4.7 Ghz",
+        "precio":57500,
+        "img":"images/Procesador Amd Ryzen 7 5800X 4.7 Ghz.jpeg",
+        "id":2
+    },
+    {
+        "nombre":"Amd Ryzen 7 5700G 4.6 Ghz",
+        "precio":56000,
+        "img":"images/Procesador Amd Ryzen 7 5700G 4.6 Ghz.jpeg",
+        "id":3
+    },
+    {
+        "nombre":"Msi A320M PRO VH",
+        "precio":6200,
+        "img":"images/Msi A320M PRO VH.jpeg",
+        "id":4
+    },
+    {
+        "nombre":"Msi A520M-A PRO",
+        "precio":7500,
+        "img":"images/Msi A520M-A PRO.jpeg",
+        "id":5
+    },
+    {
+        "nombre":"Msi X570-A PRO",
+        "precio":21500,
+        "img":"images/Msi X570-A PRO.jpeg",
+        "id":6
+    },
+    {
+        "nombre":"Msi B550 TOMAHAWK",
+        "precio":23500,
+        "img":"images/Msi B550 TOMAHAWK.jpeg",
+        "id":7
+    },
+    {
+        "nombre":"RTX 3060 Ti 8Gb Msi Gaming X",
+        "precio":200000,
+        "img":"images/RTX 3060 Ti 8Gb Msi Gaming X.jpeg",
+        "id":8
+    },
+    {
+        "nombre":"RTX 3060 Ti 8Gb Msi Ventus 2X Oc",
+        "precio":185000,
+        "img":"images/RTX 3060 Ti 8Gb Msi Ventus 2X Oc.jpeg",
+        "id":9
+    },
+    {
+        "nombre":"RTX 3080 Ti 12Gb Msi Ventus 3X Oc",
+        "precio":325000,
+        "img":"images/RTX 3080 Ti 12Gb Msi Ventus 3X Oc.jpeg",
+        "id":10
+    },
+    {
+        "nombre":"RTX 2060 6Gb Asus Dual Oc",
+        "precio":127000,
+        "img":"images/RTX 2060 6Gb Asus Dual Oc.jpeg",
+        "id":11
+    }
+]
