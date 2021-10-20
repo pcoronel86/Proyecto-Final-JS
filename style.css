@@ -184,12 +184,15 @@ input:checked + .slider:before {
 }
 .compraTotal {
   display: flex;
-  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
 }
 .credit-card-div {
   background-color: #4d6fdd;
 }
-
+.productoId{
+  color: white;
+}
 body,
 html {
   height: 100%;

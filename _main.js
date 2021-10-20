@@ -204,7 +204,6 @@ function borrarItems(event){
 
 $(document).ready(function(){
     $('.productoId').hide();
-   console.log('xxx', window.location.href);
 });
 
 //evento de compra final nos envia a la pagina de datos de compra
