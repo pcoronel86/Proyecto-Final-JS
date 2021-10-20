@@ -1,74 +1,82 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css">
-        <title>Comprar Producto</title>
-      </head>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <title>Comprar Producto</title>
+</head>
+
 <body>
-  <form action="#" class="credit-card-div">
-        <div class="panel panel-default" >
-         <div class="panel-heading">
-             
-              <div class="row ">
-                      <div class="col-md-12">
-                          <input type="text" class="form-control" placeholder="Enter Card Number" />
-                      </div>
-                  </div>
-             <div class="row ">
-                      <div class="col-md-3 col-sm-3 col-xs-3">
-                          <span class="help-block text-muted small-font" > Expiry Month</span>
-                          <input type="text" class="form-control" placeholder="MM" />
-                      </div>
-                 <div class="col-md-3 col-sm-3 col-xs-3">
-                          <span class="help-block text-muted small-font" >  Expiry Year</span>
-                          <input type="text" class="form-control" placeholder="YY" />
-                      </div>
-                <div class="col-md-3 col-sm-3 col-xs-3">
-                          <span class="help-block text-muted small-font" >  CCV</span>
-                          <input type="text" class="form-control" placeholder="CCV" />
-                      </div>
-                 <div class="col-md-3 col-sm-3 col-xs-3">
-        <img src="images/card-cvv.svg" class="img-rounded" />
-                 </div>
-                  </div>
-             <div class="row ">
-                      <div class="col-md-12 pad-adjust">
-        
-                          <input type="text" class="form-control" placeholder="Name On The Card" />
-                      </div>
-                  </div>
-             <div class="row">
-        <div class="col-md-12 pad-adjust">
-            
+  <header class="header">
+    <nav class="navbar navbar-dark bg-primary fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <a href="index.html"><img src="/images/logo.png"></a>
+        </a>
+      </div>
+    </nav>
+  </header>
+  <div class='containers' id='creator'>
+    <div class='window'>
+      <div class='order-info'>
+        <div class='order-info-content'>
+          <h2>Productos a Comprar</h2>
+          <div class='line'></div>
+          <!-- ? START SHOPPING CART ITEMS -->
+          <div class="shopping-cart-items" id="carrito">
+          </div>
+          <!-- ? END SHOPPING CART ITEMS -->
+          <div class='line'></div>
+          <div class='total'>
+            <div class='thin dense'>TOTAL</div>
+            <div style='float:right; text-align:right;' class='thin dense total-compra'></div>
+          </div>
         </div>
-             </div>
-               <div class="row ">
-                    <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
-                        <input type="submit"  class="btn btn-danger" value="CANCEL" />
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
-                        <input type="submit"  class="btn btn-warning btn-block" value="PAY NOW" />
-                    </div>
-                </div>
-             
-            </div>
+      </div>
+      <div class='credit-info'>
+        <div class='credit-info-content'>
+          <img src='https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png' height='80'
+            class="credit-card-image" id="credit-card-image"></img>
+          <form action="" id="form">
+            NUMERO TARGETA
+            <input class="input-field" name="credit-number" id="card-number" required></input>
+            NOMBRE TITULAR
+            <input class="input-field" name="nombre" required></input>
+            DNI TITULAR
+            <input class="input-field" name="dni" id="dni" required></input>
+            <table class='half-input-table'>
+              <tr>
+                <td> VENCIMIENTO
+                  <input class="input-field" name="fecha" required></input>
+                </td>
+                <td>CVC
+                  <input class="input-field" name="cvc" required></input>
+                </td>
+              </tr>
+            </table>
+            <button class='pay-btn' id="comprar" type="submit">Comprar</button>
+          </form>
         </div>
-  </form>
-    
+      </div>
+    </div>
+  </div>
 
 
 
 
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-    <script src="_main.js"></script>
+  <script src="_main.js"></script>
 </body>
+
 </html>

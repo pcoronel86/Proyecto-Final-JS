@@ -1,10 +1,12 @@
 const listaProductos = document.getElementById("grid")
+const listaDeCompra = document.getElementById("creator")
 let productList = new Array();
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-const URLJSONCOMPRA = "ejemplocompra.json"
-
-//creamos productos en el html
 const URLJSON = "productos.json"
+let form = document.getElementById('form');
+let clienteCompra = [];
+
+//comensamos recorriendo el .JSON para crear los objetos en producList
 $.getJSON(URLJSON, function (respuesta, estado){
     if (estado === "success"){
         let misDatos = respuesta;
@@ -24,6 +26,7 @@ $.getJSON(URLJSON, function (respuesta, estado){
     }
 } )
 
+//creamos los productos en el html recorriento productList y creando un div con los datos
 function actualizarList(){
     if(productList.length > 0 ){
         for(let i in productList){
@@ -43,44 +46,27 @@ function actualizarList(){
     }
 }
 
-/*$.getJSON(URLJSONCOMPRA, function (respuesta, estado){
-    if (estado === "success"){
-        console.log('----------//////////// ');
-        let clienteCompras = respuesta;
-        for(let i in clienteCompras){
-            console.log('apellido: ' + clienteCompras[i].apellido);
-            console.log('nombre: ' + clienteCompras[i].nombre);
-            console.log('total: ' + clienteCompras[i].total);
-            for(let j in clienteCompras[i].carrito_cliente){
-                console.log('nombre producto: ' + clienteCompras[i].carrito_cliente[j].nombre);
-
-            }
-        }
-    }
-} )*/
-// agregarAlCarrito recibe el evento de click
+//agregamos el evento al boton comprar de los productos
 if (listaProductos){ listaProductos.addEventListener("click",agregarAlCarrito);}
-
 function agregarAlCarrito(e) {
     e.preventDefault();
 
-    // Se localiza el click
+    // Se localiza el click en el boton comprar
     if (e.target.classList.contains("comprarButton")){
         let button = event.target;
         let productoCompra = button.closest(".producto");
-        console.log('procucto:',productoCompra);
-
         //pasamos el producto a obtenerDatos()
         obtenerDatos(productoCompra)
         
     }
 }
+//obtenemos los datos del producto a comprar comprobamos la cantidad y los guardamos en un objeto "datosProductos"
 function obtenerDatos(productoCard){
     //Comprobamos Cantidad de productos
     let existeProducto = false;
     if(carrito.length > 0){
         for(let i in carrito){
-            console.log('carrito[i].id: '+ carrito[i].id);
+            
             if(carrito[i].id == productoCard.querySelector(".productoId").textContent){
                 carrito[i].cantidad += 1;
                 existeProducto = true;
@@ -94,48 +80,31 @@ function obtenerDatos(productoCard){
             img: productoCard.querySelector(".imgProducto").src,
             id: productoCard.querySelector(".productoId").textContent,
             cantidad: 1
-        };        
+        };
+        //agregamos la compra al carrito de compras        
         carrito.push(datosProducto);
     }
-
-
-    // let clienteCompra = {
-    //     Apellido : Coronel,
-    //     Nombre : Pablo,
-    //     TotalCompra : subtotal,
-    //     carritoFinal : carrito
-    // };
-
-    // for(let i in clienteCompras){
-    //     console.log('nombre: ' + clienteCompras[i].nombre);
-    //     for(let j in clienteCompras[i].carrito_cliente){
-    //         console.log('nombre producto: ' + clienteCompras[i].carrito_cliente[j].nombre);
-
-    //     }
-    // }
-
-    //nombre: Pablo
-    // nombre producto: Msi A320M PRO VH
-    // nombre producto: Amd Ryzen 7 5800X 4.7 Ghz
-
-    guardarStorage();
+  guardarStorage();
     
 }
 
-// Gardamos en el Local storage
+// Guardamos en el Local storage
 function guardarStorage(){
     localStorage.setItem('carrito', JSON.stringify(carrito));
+
+    //funcion para crear el carrito en el html
     renderizarCarrito();
 }
 
-// Creamos el Carrito
-
+//comprobamos y hay productos en el localStorage 
 let contenedorCarrito = document.querySelector("#carrito");
 if(localStorage.length >= 1){renderizarCarrito()}
 
-////creamos productos a comprar en el html del carrito junto con el precio total
 
+//creamos productos a comprar en el html del carrito junto con el precio total
 function renderizarCarrito(){
+    const currentpage = window.location.pathname;
+    const pathEnd = '/finalizarCompra.html';
     let subtotal = 0;
     limpiarCarrito()
     console.log('ingresa a renderizarCarrito');
@@ -151,10 +120,10 @@ function renderizarCarrito(){
         row.classList.add("row")
         row.innerHTML += `
         <div class="row shoppingCartItem">
-            <div class="col-6">
-                <div class="shopping-cart-item d-flex align-items-center h-100 border-bottom pb-2 pt-3">
+            <div class="${currentpage === pathEnd ? 'col-6' : 'col-6'}">
+                <div class="shopping-cart-item d-flex align-items-center h-100 border-bottom pb-2 pt-3 ">
                     <img src='${producto.img}' class="shopping-cart-image">
-                    <h6 class="shopping-cart-item-title shoppingCartItemTitle text-light ml-3 mb-0">${producto.nombre}
+                    <h6 class="shopping-cart-item-title${currentpage === pathEnd ? '-black' : ''} shoppingCartItemTitle text-light ml-3 mb-0">${producto.nombre}
                     </h6>
                     <p class="productoId">${producto.id}</p>
                 </div>
@@ -167,21 +136,28 @@ function renderizarCarrito(){
             <div class="col-4">
                 <div
                     class="shopping-cart-quantity d-flex justify-content-between align-items-center h-100 border-bottom pb-2 pt-3">
-                    <input class="shopping-cart-quantity-input shoppingCartItemQuantity" type="number"
-                        value="${producto.cantidad}">
-                    <button class="btn btn-danger buttonDelete" type="button">X</button>
+                    ${currentpage === pathEnd ? '<div class="cantidad-compra">' + producto.cantidad + '</div>' : 
+                    `<input class="shopping-cart-quantity-input shoppingCartItemQuantity" type="number"
+                        value="${producto.cantidad}">`}
+                    <button class="btn btn-danger buttonDelete ${currentpage === pathEnd ? 'hide' : ''} " type="button">X</button>
                 </div>
             </div>
         </div>
         ` 
+        // evento para borrar 
         row.querySelector('.buttonDelete').addEventListener('click',borrarItems)
         contenedorCarrito.appendChild(row)
         //evento click para borrar compra
         row.querySelector('.buttonDelete').addEventListener('click', obtenerDatoBorra)
     })
     $('#total').val(subtotal);
+
     console.log('subtotal: '+subtotal);
+
+    $(".total-compra").append(`
+    <div class="total">${subtotal}</div>`);
 }
+//funcion que limpia el carrito
 function limpiarCarrito(){
     while(contenedorCarrito.firstChild){
         contenedorCarrito.removeChild(contenedorCarrito.firstChild)
@@ -191,8 +167,7 @@ function limpiarCarrito(){
 //obtenemos el div a borrar
 function obtenerDatoBorra(event){
     let buttonclick = event.target;
-    let productoBorrar = buttonclick.closest(".row");
-    console.log('procuctoBorrar:',productoBorrar);   
+    let productoBorrar = buttonclick.closest(".row"); 
     
     obtenerId(productoBorrar)
 }
@@ -201,7 +176,6 @@ function obtenerDatoBorra(event){
 function obtenerId (procuctoBorrar){
 
     let itemId = procuctoBorrar.querySelector('.productoId').textContent;
-    console.log('ID:',itemId);
     borrarCompra(itemId);
     console.log(carrito);
 
@@ -227,9 +201,29 @@ function borrarItems(event){
     let buttonclicked = event.target;
     buttonclicked.closest(".row").remove();
 }
+
 $(document).ready(function(){
     $('.productoId').hide();
-   
+   console.log('xxx', window.location.href);
 });
+
+//evento de compra final nos envia a la pagina de datos de compra
+$('#finalizar-compra').click(function() {
+    window.location.href = 'finalizarCompra.html';
+});
+
+// form que guarda los datos el cliente
+$("#form").submit((e)=>{
+    e.preventDefault();
+    let formValues = new FormData(e.target);
+    let nuevaCompra = {nombre: formValues.get("nombre"), dni: formValues.get("dni"), credirCard: formValues.get("credit-number"), vencimiento: formValues.get("fecha"), cvc: formValues.get("cvc")};
+    form.reset();
+    clienteCompra.push(nuevaCompra);
+    console.log(nuevaCompra);
+    localStorage.setItem("cliente", JSON.stringify(clienteCompra));
+    alert("Compra procesada exitosamente muchas gracias")
+
+})
+
 
 
